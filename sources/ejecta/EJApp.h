@@ -8,6 +8,7 @@
 #ifdef _WINDOWS
 #include <windows.h>
 #include <tchar.h>
+
 #include <gl/glew.h>
 #include <gl/gl.h>
 #else
@@ -29,7 +30,6 @@
 
 #include "EJSharedOpenGLContext.h"
 
-#include <android/asset_manager.h>
 
 using namespace std;
 
@@ -49,9 +49,6 @@ class EJApp : public NSObject {
 private:
     BOOL paused;
 
-    JavaVM *jvm;
-    jobject g_obj;
-
     NSDictionary *jsClasses;
     EJTimerCollection *timers;
     long currentTime;
@@ -61,11 +58,10 @@ private:
     bool doesFileExist(const char *filename);
 
 public:
-    jobject assetManager;
     BOOL landscapeMode;
     JSGlobalContextRef jsGlobalContext;
     int height, width;
-    AAssetManager *aassetManager;
+    
     char *dataBundle;
     EJBindingTouchInput *touchDelegate;
     EJCanvasContext *currentRenderingContext;
@@ -76,8 +72,12 @@ public:
 
     EJApp(void);
     ~EJApp(void);
+    void doInit(const char* path, int w, int h);
 
+#if defined(ANDROID)
     void init(JNIEnv *env, jobject jobj, jobject assetManager, const char *path, int w, int h);
+#endif
+    
     void setScreenSize(int w, int h);
     void run(void);
     void pause(void);

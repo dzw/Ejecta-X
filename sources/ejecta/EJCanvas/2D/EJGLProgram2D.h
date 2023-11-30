@@ -5,7 +5,16 @@
 #ifndef __EJ_GL_PROGRAM_2D_H__
 #define __EJ_GL_PROGRAM_2D_H__
 
+#ifdef _WINDOWS
+#include <windows.h>
+#include <tchar.h>
+#include <GL/glew.h>
+#include <GL/gl.h>
+#include <GL/glext.h>
+#else
 #include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#endif
 
 #include "EJCanvas2DTypes.h"
 #include "EJCocoa/NSString.h"

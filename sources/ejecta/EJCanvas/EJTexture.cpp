@@ -5,7 +5,7 @@
 
 #include "lodepng.h"
 #include "lodejpeg.h"
-
+#include "EJUtils/EJFile.h"
 // Textures check this global filter state when binding
 static GLint EJTextureGlobalFilter = GL_LINEAR;
 
@@ -181,39 +181,20 @@ GLubyte *EJTexture::loadPixelsWithCGImageFromPath(NSString * path) {
 	unsigned int w, h;
 	unsigned char * origPixels = NULL;
 	unsigned int error = lodejpeg_decode32_file(&origPixels, &w, &h, path->getCString());
-	if (error) {
-            if (EJApp::instance()->aassetManager == NULL) {
-                NSLOG("Error loading asset manger");
-                return origPixels;
-            }
-
-            const char *filename = path->getCString(); // "dirname/filename.ext";
-
-            // Open file
-            AAsset *asset = AAssetManager_open(EJApp::instance()->aassetManager, filename, AASSET_MODE_UNKNOWN);
-            if (NULL == asset) {
-                NSLOG("Failed to load PNG file %s :AssetManager error", filename);
-                return origPixels;
-            } else {
-                long size = AAsset_getLength(asset);
-                unsigned char *buffer = (unsigned char *) malloc(sizeof(char) *size);
-                int result = AAsset_read(asset, buffer, size);
-                if (result < 0) {
-                    AAsset_close(asset);
-                    free(buffer);
-                    return origPixels;
-                }
-                AAsset_close(asset);
-
-                unsigned int error = lodejpeg_decode_memory(&origPixels, &w, &h, buffer, size, 8);
-                if (error) {
-                    NSLOG("Error Loading image %s - %u: %s", path->getCString(), error, lodepng_error_text(error));
-                    free(buffer);
-                    return origPixels;
-                }
-                free(buffer);
-            }
-        }
+	if (error)
+	{
+		const char* filename = path->getCString(); // "dirname/filename.ext";
+		size_t size = 0;
+		unsigned char* buffer = ReadFileN(filename, &size);
+		unsigned int error = lodejpeg_decode_memory(&origPixels, &w, &h, buffer, size, 8);
+		if (error)
+		{
+			NSLOG("Error Loading image %s - %u: %s", path->getCString(), error, lodepng_error_text(error));
+			free(buffer);
+			return origPixels;
+		}
+		free(buffer);
+	}
 
 	setWidthAndHeight(w, h);
 
@@ -246,38 +227,20 @@ GLubyte *EJTexture::loadPixelsWithLodePNGFromPath(NSString *path) {
         // Load from cache /data/data
 	unsigned int error = lodepng_decode32_file(&origPixels, &w, &h, path->getCString());
 	if (error) {
-            if (EJApp::instance()->aassetManager == NULL) {
-                NSLOG("Error loading asset manger");
-                return origPixels;
-            }
+		const char* filename = path->getCString(); // "dirname/filename.ext";
 
-            const char *filename = path->getCString(); // "dirname/filename.ext";
+		size_t size = 0;
+		unsigned char* buffer = ReadFileN(filename, &size);
 
-            // Open file
-            AAsset *asset = AAssetManager_open(EJApp::instance()->aassetManager, filename, AASSET_MODE_UNKNOWN);
-            if (NULL == asset) {
-                NSLOG("Failed to load PNG file %s :AssetManager error", filename);
-                return origPixels;
-            } else {
-                long size = AAsset_getLength(asset);
-                unsigned char *buffer = (unsigned char *) malloc(sizeof(char) *size);
-                int result = AAsset_read(asset, buffer, size);
-                if (result < 0) {
-                    AAsset_close(asset);
-                    free(buffer);
-                    return origPixels;
-                }
-                AAsset_close(asset);
-
-                unsigned int error = lodepng_decode_memory(&origPixels, &w, &h, buffer, size, LCT_RGBA, 8);
-                if (error) {
-                    NSLOG("Error Loading image %s - %u: %s", path->getCString(), error, lodepng_error_text(error));
-                    free(buffer);
-                    return origPixels;
-                }
-                free(buffer);
-            }
-        }
+		unsigned int error = lodepng_decode_memory(&origPixels, &w, &h, buffer, size, LCT_RGBA, 8);
+		if (error)
+		{
+			NSLOG("Error Loading image %s - %u: %s", path->getCString(), error, lodepng_error_text(error));
+			free(buffer);
+			return origPixels;
+		}
+		free(buffer);
+	}
 
 	setWidthAndHeight(w, h);
 

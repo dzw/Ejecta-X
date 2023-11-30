@@ -75,6 +75,7 @@ LOCAL_SRC_FILES := \
                     ../../../sources/ejecta/EJCanvas/2D/EJGLProgram2D.cpp \
                     ../../../sources/ejecta/EJCanvas/2D/EJImageData.cpp \
                     ../../../sources/ejecta/EJCanvas/2D/EJPath.cpp \
+                    ../../../sources/ejecta/EJUtils/EJFile.cpp \
                     ../../../sources/ejecta/EJUtils/EJBindingHttpRequest.cpp \
                     ../../../sources/ejecta/EJUtils/EJBindingLocalStorage.cpp \
                     ../../../sources/ejecta/EJUtils/EJBindingTouchInput.cpp \

@@ -12,6 +12,7 @@
 #include "Uri.h"
 
 #include "curl/curl.h"
+#include "EJUtils/EJFile.h"
 
 static pthread_t        s_networkThread;
 static pthread_mutex_t  s_requestQueueMutex;
@@ -550,36 +551,14 @@ void EJBindingHttpRequest::loadLocalhost() {
         responseBody = (char *)pData;
     } else {
         NSLOG("Checking in bundle");
-        // Check file from main bundle - /assets/EJECTA_APP_FOLDER/
-        if (EJApp::instance()->aassetManager == NULL) {
-            NSLOG("Error loading asset manager");
-            return;
-        }
 
         const char *filename = urlPath->getCString(); // "dirname/filename.ext";
-
-        // Open file
-        AAsset *asset = AAssetManager_open(EJApp::instance()->aassetManager, filename, AASSET_MODE_UNKNOWN);
-        if (NULL == asset) {
-            NSLOG("Error: Cannot find script %s", filename);
-            return;
-        }
-
-        long size = AAsset_getLength(asset);
-        unsigned char *buffer = (unsigned char *)malloc(sizeof(char) * size);
-        int result = AAsset_read(asset, buffer, size);
-
-        if (result < 0) {
-            NSLOG("Error reading file %s", filename);
-            AAsset_close(asset);
-            free(buffer);
-            return;
-        }
-
+        size_t size=0;
+        unsigned char* buffer = ReadFileN(filename, &size);
+        
         requestSource = kEJHttpRequestSourceAssets;
-        responseBodySize = result;
+        responseBodySize = size;
         responseBody = (char *)buffer;
-        AAsset_close(asset);
     }
     state = kEJHttpRequestStateDone;
     // A response Object was never added to the response queue so we do not have

@@ -1,8 +1,8 @@
-SET PATH=F:\Android\sdk\ndk-bundle\;%PATH%
+SET PATH=D:\NDK;%PATH%
 
 cd project\android\jni
 
-@rem call ndk-build.cmd
+call ndk-build.cmd
 
 cd %~dp0
 

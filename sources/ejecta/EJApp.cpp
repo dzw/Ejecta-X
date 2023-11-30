@@ -7,7 +7,18 @@
 #include "EJCocoa/NSObjectFactory.h"
 #include "EJCocoa/NSAutoreleasePool.h"
 #include "EJTimer.h"
+#include "EJUtils/EJFile.h"
+
+
+#ifdef _WINDOWS
+#else
+
+#include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
+extern AAssetManager* g_assetManager;
+
+#endif
+
 
 #include <sys/stat.h>
 
@@ -145,21 +156,29 @@ EJApp::~EJApp()
 	NSPoolManager::purgePoolManager();
 }
 
-void EJApp::init(JNIEnv *env, jobject jobj, jobject assetManager, const char* path, int w, int h)
+#if defined(ANDROID)
+void EJApp::init(JNIEnv* env, jobject jobj, jobject assetManager, const char* path, int w, int h)
 {
-        env->GetJavaVM(&jvm);
-        
-        g_obj = jobj;
+	JavaVM *jvm;
+	jobject g_obj;
+	env->GetJavaVM(&jvm);
+	g_obj = jobj;
+	// Set global pointer to Asset Manager in Java
+	g_assetManager = AAssetManager_fromJava(env, assetManager);
 
-        // Set global pointer to Asset Manager in Java
-        this->aassetManager = AAssetManager_fromJava(env, assetManager);
-        
-	if (dataBundle) {
+	doInit(path, w, h);
+}
+#endif
+
+void EJApp::doInit(const char* path, int w, int h)
+{
+	if (dataBundle)
+	{
 		free(dataBundle);
 	}
 
- 	int len = (strlen(path) + 1);
-	dataBundle = (char *)malloc(len * sizeof(char));
+	int len = (strlen(path) + 1);
+	dataBundle = (char*)malloc(len * sizeof(char));
 	memset(dataBundle, 0, len);
 
 #ifdef _WINDOWS
@@ -175,7 +194,6 @@ void EJApp::init(JNIEnv *env, jobject jobj, jobject assetManager, const char* pa
 	// loadScriptAtPath(NSStringMake(EJECTA_BOOT_JS));
 	// loadScriptAtPath(NSStringMake(EJECTA_MAIN_JS));
 }
-
 
 void EJApp::setScreenSize(int w, int h)
 {
@@ -283,33 +301,10 @@ void EJApp::loadScriptAtPath(NSString *path) {
     NSString *script = NSString::createWithContentsOfFile(scriptPath->getCString());
 
     if (!script) {
-        // Check file from main bundle - /assets/EJECTA_APP_FOLDER/
-        if (this->aassetManager == NULL) {
-            NSLOG("error loading asset manager");
-            return;
-        }
-        
         const char *filename = scriptPath->getCString(); // "dirname/filename.ext";
-
-        // Open file
-        AAsset *asset = AAssetManager_open(this->aassetManager, filename, AASSET_MODE_UNKNOWN);
-        if (NULL == asset) {
-            NSLOG("Error: Cannot find script %s", path->getCString());
-            return;
-        } else {
-           long size = AAsset_getLength(asset);
-           unsigned char *buffer = (unsigned char *) malloc(sizeof(char) *size);
-           int result = AAsset_read(asset, buffer, size);
-           if (result < 0) {
-               NSLOG("Error reading file %s", filename);
-               AAsset_close(asset);
-               free(buffer);
-               return;
-           }
-           script = NSString::createWithData(buffer, size);
-           AAsset_close(asset);
-           free(buffer);
-        }
+    	size_t size=0;
+        unsigned char* buffer = ReadFileN(filename, &size);
+    	script = NSString::createWithData(buffer, size);           
     }
 
     JSStringRef scriptJS = JSStringCreateWithUTF8CString(script->getCString());
@@ -329,35 +324,14 @@ JSValueRef EJApp::loadModuleWithId(NSString *moduleId, JSValueRef module, JSValu
 	NSString *scriptPath = pathForResource(moduleIdFile);
 	NSString *script = NSString::createWithContentsOfFile(scriptPath->getCString());
 
-	if (!script) {
-            // Check file from main bundle - /assets/EJECTA_APP_FOLDER/
-            if (this->aassetManager == NULL) {
-                NSLOG("error loading asset manger");
-                return NULL;
-            }
-
-            const char *filename = scriptPath->getCString(); // "dirname/filename.ext";
-
-            // Open file
-            AAsset *asset = AAssetManager_open(this->aassetManager, filename, AASSET_MODE_UNKNOWN);
-            if (NULL == asset) {
-                NSLOG("Error: Cannot find script %s", moduleIdFile->getCString());
-                return NULL;
-            } else {
-                long size = AAsset_getLength(asset);
-                unsigned char *buffer = (unsigned char *) malloc(sizeof(char) *size);
-                int result = AAsset_read(asset, buffer, size);
-                if (result < 0) {
-                    NSLOG("Error reading file %s", moduleIdFile->getCString());
-                    AAsset_close(asset);
-                    free(buffer);
-                    return NULL;
-                }
-                script = NSString::createWithData(buffer, size);
-                AAsset_close(asset);
-                free(buffer);
-            }
-        }
+	if (!script)
+	{
+		const char* filename = scriptPath->getCString(); // "dirname/filename.ext";
+		size_t size = 0;
+		unsigned char* buffer = ReadFileN(filename, &size);
+		script = NSString::createWithData(buffer, size);
+		free(buffer);
+	}
 	
 	NSLOG("Loading Module: %s", moduleId->getCString() );
 	

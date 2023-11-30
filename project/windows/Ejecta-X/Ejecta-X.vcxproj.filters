@@ -40,6 +40,9 @@
     <Filter Include="ejecta\lodefreetype">
       <UniqueIdentifier>{d7bf0011-d9e8-4364-af98-25a439321c62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ejecta\EJCanvas\2D">
+      <UniqueIdentifier>{6a6aa264-fb28-4939-96f9-35d3394a781c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -58,9 +61,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Ejecta-X.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\EJCocoa\CGAffineTransform.h">
@@ -84,16 +84,7 @@
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJBindingImage.h">
       <Filter>ejecta\EJCanvas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJBindingImageData.h">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasContext.h">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasContextTexture.h">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasContextScreen.h">
       <Filter>ejecta\EJCanvas</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasTypes.h">
@@ -101,12 +92,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\EJConvert.h">
       <Filter>ejecta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJImageData.h">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJPath.h">
-      <Filter>ejecta\EJCanvas</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJTexture.h">
       <Filter>ejecta\EJCanvas</Filter>
@@ -189,9 +174,6 @@
     <ClInclude Include="..\..\..\sources\ejecta\lodejpeg\lodejpeg.h">
       <Filter>ejecta\lodejpeg</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJFont.h">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\lodefreetype\lodefreetype.h">
       <Filter>ejecta\lodefreetype</Filter>
     </ClInclude>
@@ -207,12 +189,36 @@
     <ClInclude Include="..\..\..\sources\ejecta\EJUtils\EJBindingTouchInput.h">
       <Filter>ejecta\EJUtils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\2D\EJBindingImageData.h">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\2D\EJCanvasContextScreen.h">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\2D\EJCanvasContextTexture.h">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Ejecta-X.h">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\2D\EJFont.h">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\2D\EJImageData.h">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\2D\EJPath.h">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\2D\EJGLProgram2D.h">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJSharedOpenGLContext.h">
+      <Filter>ejecta</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Ejecta-X.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJCocoa\CGAffineTransform.cpp">
@@ -233,26 +239,11 @@
     <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJBindingImage.cpp">
       <Filter>ejecta\EJCanvas</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJBindingImageData.cpp">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasContext.cpp">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasContextScreen.cpp">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasContextTexture.cpp">
       <Filter>ejecta\EJCanvas</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJConvert.cpp">
       <Filter>ejecta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJImageData.cpp">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJPath.cpp">
-      <Filter>ejecta\EJCanvas</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJTexture.cpp">
       <Filter>ejecta\EJCanvas</Filter>
@@ -311,9 +302,6 @@
     <ClCompile Include="..\..\..\sources\ejecta\lodejpeg\lodejpeg.cpp">
       <Filter>ejecta\lodejpeg</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\EJFont.cpp">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\lodefreetype\lodefreetype.cpp">
       <Filter>ejecta\lodefreetype</Filter>
     </ClCompile>
@@ -325,6 +313,27 @@
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJUtils\EJBindingTouchInput.cpp">
       <Filter>ejecta\EJUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\2D\EJBindingImageData.cpp">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\2D\EJCanvasContextScreen.cpp">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\2D\EJCanvasContextTexture.cpp">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Ejecta-X.cpp">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\2D\EJFont.cpp">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\2D\EJImageData.cpp">
+      <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\2D\EJPath.cpp">
+      <Filter>ejecta\EJCanvas\2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

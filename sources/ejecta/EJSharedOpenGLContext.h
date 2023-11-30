@@ -5,10 +5,12 @@
 #ifndef __EJ_SHARED_OPENGL_CONTEXT_H__
 #define __EJ_SHARED_OPENGL_CONTEXT_H__
 
-#include "EJGLProgram2D.h"
 //TODO: #import "EJGLProgram2DRadialGradient.h"
 
 #define EJ_OPENGL_VERTEX_BUFFER_SIZE 2048 //(32 * 1024) // 32kb on Ejecta iOS
+#include <EJCanvas/2D/EJCanvas2DTypes.h>
+
+class EJGLProgram2D;
 
 class EJSharedOpenGLContext : public NSObject {
 private:
