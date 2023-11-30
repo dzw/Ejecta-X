@@ -1,7 +1,7 @@
 #include "EJGLProgram2D.h"
 
 #include "EJApp.h"
-
+#include "EJUtils/EJFile.h"
 EJGLProgram2D::EJGLProgram2D(): program(0), screen(0) {
 
 }
@@ -51,32 +51,11 @@ GLint EJGLProgram2D::compileShaderFile(NSString *file, GLenum type) {
     NSString *source = NSString::createWithContentsOfFile(sourcePath->getCString());
 
     if (!source) {
-        // Check file from data bundle - /assets/EJECTA_APP_FOLDER/
-        if (EJApp::instance()->aassetManager == NULL) {
-            NSLOG("Error loading asset manger");
-            return 0;
-        }
-
         const char *filename = sourcePath->getCString(); // "dirname/filename.ext";
-
-        // Open file
-        AAsset *asset = AAssetManager_open(EJApp::instance()->aassetManager, filename, AASSET_MODE_UNKNOWN);
-        if (NULL == asset) {
-            NSLOG("Failed to load shader file %s :AssetManager error", file->getCString());
-            return 0;
-        } else {
-           long size = AAsset_getLength(asset);
-           unsigned char *buffer = (unsigned char*)malloc(sizeof(char)*size);
-           int result = AAsset_read(asset, buffer, size);
-           if (result < 0) {
-               AAsset_close(asset);
-               free(buffer);
-               return 0;
-           }
-           source = NSString::createWithData(buffer, size);
-           AAsset_close(asset);
-           free(buffer);
-        }
+    	size_t size=0;
+    	unsigned char* buffer = ReadFileN(filename, &size);
+    	source = NSString::createWithData(buffer, size);
+    	free(buffer);
     }
 
     if (!source) {

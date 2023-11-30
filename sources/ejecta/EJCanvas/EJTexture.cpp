@@ -231,7 +231,6 @@ GLubyte *EJTexture::loadPixelsWithLodePNGFromPath(NSString *path) {
 
 		size_t size = 0;
 		unsigned char* buffer = ReadFileN(filename, &size);
-
 		unsigned int error = lodepng_decode_memory(&origPixels, &w, &h, buffer, size, LCT_RGBA, 8);
 		if (error)
 		{

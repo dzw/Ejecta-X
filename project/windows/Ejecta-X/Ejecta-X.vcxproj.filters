@@ -341,6 +341,12 @@
     <ClCompile Include="..\..\..\sources\ejecta\EJUtils\EJFile.cpp">
       <Filter>ejecta\EJUtils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\2D\EJGLProgram2D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJSharedOpenGLContext.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Ejecta-X.rc">

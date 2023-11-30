@@ -18,6 +18,16 @@ AAssetManager* g_assetManager;
 jobject assetManager;
 #endif
 
+#ifdef _WINDOWS
+FILE _iob[] = { *stdin, *stdout, *stderr };
+
+extern "C" FILE * __cdecl __iob_func(void)
+{
+    return _iob;
+}
+#endif
+
+
 unsigned char* ReadFileN(const char* filename, size_t* sizea)
 {
     
