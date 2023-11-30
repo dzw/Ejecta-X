@@ -99,9 +99,6 @@
     <ClInclude Include="..\..\..\sources\ejecta\EJTimer.h">
       <Filter>ejecta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\lodepng\lodepng.h">
-      <Filter>ejecta\lodepng</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\EJCocoa\NSAutoreleasePool.h">
       <Filter>ejecta\EJCocoa</Filter>
     </ClInclude>
@@ -171,12 +168,6 @@
     <ClInclude Include="..\..\..\sources\ejecta\EJUtils\EJBindingLocalStorage.h">
       <Filter>ejecta\EJUtils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\lodejpeg\lodejpeg.h">
-      <Filter>ejecta\lodejpeg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\lodefreetype\lodefreetype.h">
-      <Filter>ejecta\lodefreetype</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\EJCocoa\NSCache.h">
       <Filter>ejecta\EJCocoa</Filter>
     </ClInclude>
@@ -216,6 +207,18 @@
     <ClInclude Include="..\..\..\sources\ejecta\EJSharedOpenGLContext.h">
       <Filter>ejecta</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\lib\lodefreetype\lodefreetype.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\lib\lodejpeg\lodejpeg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\lib\lodepng\lodepng.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ejecta\EJUtils\EJFile.h">
+      <Filter>ejecta\EJUtils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -250,9 +253,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJTimer.cpp">
       <Filter>ejecta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\lodepng\lodepng.cpp">
-      <Filter>ejecta\lodepng</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJCocoa\NSArray.cpp">
       <Filter>ejecta\EJCocoa</Filter>
@@ -299,12 +299,6 @@
     <ClCompile Include="..\..\..\sources\ejecta\EJUtils\EJBindingLocalStorage.cpp">
       <Filter>ejecta\EJUtils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\lodejpeg\lodejpeg.cpp">
-      <Filter>ejecta\lodejpeg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ejecta\lodefreetype\lodefreetype.cpp">
-      <Filter>ejecta\lodefreetype</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJCocoa\NSCache.cpp">
       <Filter>ejecta\EJCocoa</Filter>
     </ClCompile>
@@ -334,6 +328,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ejecta\EJCanvas\2D\EJPath.cpp">
       <Filter>ejecta\EJCanvas\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\lib\lodefreetype\lodefreetype.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\lib\lodejpeg\lodejpeg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\lib\lodepng\lodepng.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ejecta\EJUtils\EJFile.cpp">
+      <Filter>ejecta\EJUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
