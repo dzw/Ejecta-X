@@ -5,8 +5,8 @@
 #ifndef __EJ_CANVAS_CONTEXT_TEXTURE_H__
 #define __EJ_CANVAS_CONTEXT_TEXTURE_H__
 
-#include "EJCanvasContext.h"
-#include "EJTexture.h"
+#include "EJCanvas/EJCanvasContext.h"
+#include "EJCanvas/EJTexture.h"
 
 class EJCanvasContextTexture : public EJCanvasContext {
 private:

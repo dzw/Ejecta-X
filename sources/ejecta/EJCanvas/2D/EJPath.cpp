@@ -3,10 +3,17 @@
 #include <algorithm>
 #include "EJPath.h"
 #include "EJCocoa/support/nsMacros.h"
-#include "EJCanvasContext.h"
-
+#include "EJCanvas/EJCanvasContext.h"
+#ifdef _WINDOWS
+#include <GL/glew.h>
+#include <GL/gl.h>
+#include <GL/glext.h>
+#else
 //Necessary for call to OpenGLES 1 functions such as glDisableClientState
 #include <GLES/gl.h>
+#endif
+
+#include "EJCanvas/2D/EJGLProgram2D.h"
 
 EJPath::EJPath() :
 		transform(CGAffineTransformIdentity), 

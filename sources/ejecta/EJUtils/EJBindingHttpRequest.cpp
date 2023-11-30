@@ -1,6 +1,9 @@
 #include "EJBindingHttpRequest.h"
 #include <queue>
+
+#define HAVE_STRUCT_TIMESPEC
 #include <pthread.h>
+
 #include <errno.h>
 
 #include <string>

@@ -1,5 +1,5 @@
 #include "EJFont.h"
-#include "EJCanvasContext.h"
+#include "EJCanvas/EJCanvasContext.h"
 #include "lodefreetype.h"
 #include "EJApp.h"
 

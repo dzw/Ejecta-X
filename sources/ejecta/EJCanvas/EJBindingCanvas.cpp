@@ -1,6 +1,6 @@
 #include "EJBindingCanvas.h"
-#include "EJBindingImageData.h"
-#include "EJCanvasContextScreen.h"
+#include "EJCanvas/2D/EJBindingImageData.h"
+#include "EJCanvas/2D/EJCanvasContextScreen.h"
 
 bool EJBindingCanvas::firstCanvasInstance = true;
 

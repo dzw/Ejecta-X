@@ -110,8 +110,12 @@ static inline EJColorRGBA EJCanvasBlendColor( EJCanvasState *state, EJColorRGBA 
 	return blendedColor;
 }
 
+#define MAKE_EJColorRGBA(varrgba, rgba) EJColorRGBA varrgba;varrgba.hex = rgba
 static inline EJColorRGBA EJCanvasBlendWhiteColor( EJCanvasState *state ) {
-	return EJCanvasBlendColor(state, (EJColorRGBA){0xffffffff});
+	MAKE_EJColorRGBA(rgba, 0xffffffff);
+	
+	// return EJCanvasBlendColor(state, (EJColorRGBA){0xffffffff});
+	return EJCanvasBlendColor(state, rgba);
 }
 
 static inline EJColorRGBA EJCanvasBlendFillColor( EJCanvasState *state ) {

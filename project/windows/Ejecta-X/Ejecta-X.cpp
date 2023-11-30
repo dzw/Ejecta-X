@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 #include "Ejecta-X.h"
+
+#define HAVE_STRUCT_TIMESPEC
 #include <pthread.h>
 
 #define MAX_LOADSTRING 100
@@ -50,7 +52,8 @@ void SetupRC()
 	//glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);// Really Nice Perspective Calculations
 
 	const char *nativeString = ".";
-	EJApp::instance()->init(nativeString, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// EJApp::instance()->init(nativeString, SCREEN_WIDTH, SCREEN_HEIGHT);
+	EJApp::instance()->doInit(nativeString, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 }
 

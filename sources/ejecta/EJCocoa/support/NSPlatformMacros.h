@@ -12,7 +12,7 @@
 
 #define _CRT_SECURE_NO_DEPRECATE  
 #define _CRT_SECURE_NO_WARNINGS 
-
+// #include <windows.h>
 #else
 #include <android/log.h>
 #endif
@@ -196,7 +196,9 @@ public: virtual void set##funName(varType var)   \
 #define  LOG_TAG    "ejecta"
 
 #ifdef _WINDOWS	
-#define  NSLog(format, ...)      if(format){char tmpText[1024*8];sprintf(tmpText,format, __VA_ARGS__);OutputDebugStringA(tmpText);printf("\n");}OutputDebugStringA("\n")
+// #define  NSLog(format, ...)      if(format){char tmpText[1024*8];sprintf(tmpText,format, __VA_ARGS__);OutputDebugStringA(tmpText);printf("\n");}OutputDebugStringA("\n")
+#define  NSLog(format, ...)      if(format){char tmpText[1024*8];sprintf(tmpText,format, __VA_ARGS__);printf(tmpText);printf("\n");}printf("\n")
+
 #else
 #define  NSLog(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 #endif

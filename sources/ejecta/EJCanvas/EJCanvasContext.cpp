@@ -9,7 +9,8 @@
 #include <GLES2/gl2ext.h>
 #endif
 #include "../EJApp.h"
-#include "EJCanvasContext.h"
+#include "EJCanvas/EJCanvasContext.h"
+#include "EJCanvas/2D/EJGLProgram2D.h"
 
 
 EJCanvasContext::EJCanvasContext() :

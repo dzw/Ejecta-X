@@ -1,4 +1,6 @@
-﻿#include "EJFile.h"
+﻿#include "stdafx.h"
+
+#include "EJFile.h"
 
 #ifdef __cplusplus
 #include <string>
@@ -53,8 +55,9 @@ unsigned char* ReadFileN(const char* filename, size_t* sizea)
         (std::istreambuf_iterator<char>())
     );
     std::basic_string<char> remove_reference = std::move(rslt);
-    unsigned char* buffer = (unsigned char*)malloc(sizeof(char) * size);
     size_t size = remove_reference.size();
+    
+    unsigned char* buffer = (unsigned char*)malloc(sizeof(char) * size);    
     memcpy(buffer, remove_reference.c_str(), size);
     *sizea = size;
 
