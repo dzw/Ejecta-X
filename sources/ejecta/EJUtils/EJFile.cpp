@@ -1,6 +1,4 @@
-﻿#include "stdafx.h"
-
-#include "EJFile.h"
+﻿#include "EJFile.h"
 
 #ifdef __cplusplus
 #include <string>

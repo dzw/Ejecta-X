@@ -1,4 +1,5 @@
 #include "EJSharedOpenGLContext.h"
+#include "EJCanvas/2D/EJGLProgram2D.h"
 
 EJSharedOpenGLContext *EJSharedOpenGLContext::instance = NULL;
 
