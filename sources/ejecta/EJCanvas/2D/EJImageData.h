@@ -1,7 +1,7 @@
 #ifndef __EJIMAGEDATA_H__
 #define __EJIMAGEDATA_H__
 
-#include "EJTexture.h"
+#include "EJCanvas/EJTexture.h"
 
 class EJImageData: public NSObject {
 	EJTexture * m_texture;

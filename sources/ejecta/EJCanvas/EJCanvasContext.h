@@ -15,10 +15,11 @@
 
 #include "EJCocoa/support/nsMacros.h"
 #include "EJTexture.h"
-#include "EJImageData.h"
-#include "EJPath.h"
-#include "EJCanvas2DTypes.h"
-#include "EJFont.h"
+#include "EJCanvas/2D/EJImageData.h"
+#include "EJCanvas/2D/EJPath.h"
+#include "EJCanvas/2D/EJCanvas2DTypes.h"
+#include "EJCanvas/2D/EJFont.h"
+
 #include "EJCocoa/NSDictionary.h"
 #include "EJCocoa/NSCache.h"
 #include "EJCocoa/UIFont.h"

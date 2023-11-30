@@ -1,7 +1,7 @@
 #ifndef __EJFONT_H__
 #define __EJFONT_H__
 
-#include "EJTexture.h"
+#include "EJCanvas/EJTexture.h"
 #include "EJCocoa/NSArray.h"
 #include "EJCocoa/NSInteger.h"
 #include "EJCocoa/NSString.h"

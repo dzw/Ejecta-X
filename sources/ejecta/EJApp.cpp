@@ -2,8 +2,9 @@
 #include "EJBindingBase.h"
 #include "EJUtils/EJBindingTouchInput.h"
 #include "EJUtils/EJBindingHttpRequest.h"
-#include "EJCanvasContext.h"
-#include "EJCanvasContextScreen.h"
+
+#include "EJCanvas/EJCanvasContext.h"
+#include "EJCanvas/2D/EJCanvasContextScreen.h"
 #include "EJCocoa/NSObjectFactory.h"
 #include "EJCocoa/NSAutoreleasePool.h"
 #include "EJTimer.h"

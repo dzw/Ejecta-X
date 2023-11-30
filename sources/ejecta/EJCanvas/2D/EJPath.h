@@ -4,7 +4,7 @@
 #include <math.h>
 #include <vector>
 #include "EJCanvas2DTypes.h"
-#include "EJCanvasContext.h"
+#include "EJCanvas/EJCanvasContext.h"
 #include "EJCocoa/support/NSPlatformMacros.h"
 
 #define EJ_PATH_RECURSION_LIMIT 8

@@ -2,8 +2,8 @@
 #define __EJ_BINDING_CANVAS_H__
 
 #include "EJBindingBase.h"
-#include "EJCanvasContextTexture.h"
-#include "EJCanvasContextScreen.h"
+#include "EJCanvas/2D/EJCanvasContextTexture.h"
+#include "EJCanvas/2D/EJCanvasContextScreen.h"
 #include "EJTexture.h"
 #include "EJBindingImage.h"
 

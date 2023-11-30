@@ -5,7 +5,7 @@
 #ifndef __EJ_CANVAS_CONTEXT_SCREEN_H__
 #define __EJ_CANVAS_CONTEXT_SCREEN_H__
 
-#include "EJCanvasContext.h"
+#include "EJCanvas/EJCanvasContext.h"
 
 typedef enum {
 	kEJScalingModeNone,
