@@ -37,3 +37,6 @@ gen/
 /project/windows/Ejecta-X/Release
 /project/android/libs/armeabi-v7a/*.so
 /project/android/assets/www/shaders
+/project/windows/cmake-build-debug-visual-studio
+/project/windows/cmake-build-debug-visual-studio-event-trace
+/project/windows/cmake-build-debug
