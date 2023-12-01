@@ -300,7 +300,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	   g_hRC = wglCreateContext(g_hDC);
 	   if (g_hRC == NULL)
 	   { 
-		   DWORD errorCode = GetLastError();//2000 ERROR_INVALID_PIXEL_FORMAT
+		   DWORD errorCode = GetLastError();//2000 ERROR_INVALID_PIXEL_FORMAT //缺少Ejecta-X.rc导致 LoadString失败创建窗口失败
 		   printf("!!! Could not create an OpenGL 3.1 context. err:%d \n", errorCode);
 	   }
 
