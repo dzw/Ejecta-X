@@ -278,7 +278,7 @@ bool EJApp::doesFileExist(const char *filename) {
     struct stat st;
     return (stat(filename, &st)) == 0;
 }
-
+#include <algorithm>
 NSString *EJApp::pathForResource(NSString *resourcePath) {
     // Path to cache
     string full_path = string(dataBundle) + string("/") + string("cache/") + resourcePath->getCString();
@@ -291,6 +291,12 @@ NSString *EJApp::pathForResource(NSString *resourcePath) {
     }
 
     full_path = string(EJECTA_APP_FOLDER) + resourcePath->getCString();
+
+#ifdef _WINDOWS
+		std::replace(full_path.begin(), full_path.end(), '/', '\\');
+#endif
+	
+	
     return NSStringMake(full_path);
 }
 

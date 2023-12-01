@@ -19,7 +19,7 @@ void EJBindingImage::beginLoad() {
 	sharegroup->autorelease();
 	load(sharegroup);
 }
-
+#include <algorithm>
 void EJBindingImage::load(NSString* sharegroup) {
 
 	NSString * fullPath;

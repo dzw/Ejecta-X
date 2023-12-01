@@ -36,7 +36,7 @@ extern "C" {
             s_is_resumed = false;
         }
 
-        EJApp::instance()->run();
+        EJApp::instance()->update();
     }
 
     JNIEXPORT void JNICALL Java_com_impactjs_ejecta_EjectaRenderer_nativeFinalize(JNIEnv* env, jobject thiz)

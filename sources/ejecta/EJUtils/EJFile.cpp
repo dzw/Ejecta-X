@@ -66,8 +66,9 @@ unsigned char* ReadFileN(const char* filename, size_t* sizea)
 
     std::string strPath = filename;
     std::replace(strPath.begin(), strPath.end(), '/', '\\');
+    filename = strPath.c_str();
 
-    std::ifstream iFile(strPath.c_str(), std::ios::in);
+    std::ifstream iFile(filename, std::ios::in);
     std::string rslt(
         (std::istreambuf_iterator<char>(iFile)),
         (std::istreambuf_iterator<char>())
