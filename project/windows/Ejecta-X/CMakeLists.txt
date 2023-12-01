@@ -120,7 +120,7 @@ set(ejecta__EJUtils
 )
 source_group("ejecta\\EJUtils" FILES ${ejecta__EJUtils})
 
-set(
+set(ejecta__H
     "../../../sources/lib/lodefreetype/lodefreetype.h"
     "../../../sources/lib/lodejpeg/lodejpeg.h"
     "../../../sources/lib/lodepng/lodepng.h"
@@ -128,9 +128,9 @@ set(
     "stdafx.h"
     "targetver.h"
 )
-source_group("头文件" FILES ${})
+source_group("头文件" FILES ${ejecta__H})
 
-set(
+set(ejecta__X
     "../../../sources/ejecta/EJCanvas/2D/EJGLProgram2D.cpp"
     "../../../sources/ejecta/EJSharedOpenGLContext.cpp"
     "../../../sources/lib/lodefreetype/lodefreetype.cpp"
@@ -138,7 +138,7 @@ set(
     "../../../sources/lib/lodepng/lodepng.cpp"
     "stdafx.cpp"
 )
-source_group("源文件" FILES ${})
+source_group("源文件" FILES ${ejecta__X})
 
 set(
     "Ejecta-X.ico"
@@ -155,8 +155,8 @@ set(ALL_FILES
     ${ejecta__EJCocoa}
     ${ejecta__EJCocoa__support}
     ${ejecta__EJUtils}
-    ${}
-    ${}
+    ${ejecta__H}
+    ${ejecta__X}
     ${}
 )
 
@@ -213,6 +213,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ">"
     "${CMAKE_CURRENT_SOURCE_DIR}/../../../sources/ejecta"
     "${CMAKE_CURRENT_SOURCE_DIR}/../../../sources/lib/lodejpeg"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../library/win32/libjpeg"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../sources/lib/lodepng"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../sources/lib/lodefreetype"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../sources/lib/uriparser"
