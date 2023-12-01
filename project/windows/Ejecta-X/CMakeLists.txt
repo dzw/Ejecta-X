@@ -478,25 +478,23 @@ if(MSVC)
         >
         $<$<CONFIG:ReleaseMultithreaded>:
             /NODEFAULTLIB:/NODEFAULTLIB:library;
-            /DEBUG;
             /OPT:REF;
             /OPT:ICF;
             /INCREMENTAL:NO
         >
         $<$<CONFIG:ReleaseSinglethreaded>:
             /NODEFAULTLIB:/NODEFAULTLIB:library;
-            /DEBUG;
             /OPT:REF;
             /OPT:ICF;
             /INCREMENTAL:NO
         >
         $<$<CONFIG:Release>:
             /NODEFAULTLIB:/NODEFAULTLIB:library;
-            /DEBUG;
             /OPT:REF;
             /OPT:ICF;
             /INCREMENTAL:NO
         >
+        /DEBUG;
         /SUBSYSTEM:WINDOWS
     )
 endif()

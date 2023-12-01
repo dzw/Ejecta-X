@@ -40,3 +40,5 @@ gen/
 /project/windows/cmake-build-debug-visual-studio
 /project/windows/cmake-build-debug-visual-studio-event-trace
 /project/windows/cmake-build-debug
+/project/windows/Ejecta-X/Ejecta-X.dir
+/project/windows/CMakeFiles
