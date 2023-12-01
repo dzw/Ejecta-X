@@ -18,6 +18,7 @@ AAssetManager* g_assetManager;
 jobject assetManager;
 #endif
 
+
 #ifdef _WINDOWS
 FILE _iob[] = { *stdin, *stdout, *stderr };
 
@@ -27,9 +28,14 @@ extern "C" FILE * __cdecl __iob_func(void)
 }
 #endif
 
+#ifdef _WINDOWS	
+#include <windows.h>
+#endif
+#include "EJCocoa/support/NSPlatformMacros.h"
 
 unsigned char* ReadFileN(const char* filename, size_t* sizea)
 {
+    NSLOG("ReadFileN %s", filename);
     
 #if defined(ANDROID)
     // Check file from main bundle - /assets/EJECTA_APP_FOLDER/

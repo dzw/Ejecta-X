@@ -173,6 +173,8 @@ void EJApp::init(JNIEnv* env, jobject jobj, jobject assetManager, const char* pa
 
 void EJApp::doInit(const char* path, int w, int h)
 {
+	NSLOG("EJApp::doInit");
+
 	if (dataBundle)
 	{
 		free(dataBundle);
@@ -206,13 +208,14 @@ void EJApp::setScreenSize(int w, int h)
 	}
 }
 
-void EJApp::run(void)
+void EJApp::update(void)
 {
 
 	if( paused ) { return; }
 
 	EJHttpClient::getInstance()->dispatchResponseCallbacks(0);
 
+	//NSLOG("EJApp::update");
 
 	if (!lockTouches)
 	{

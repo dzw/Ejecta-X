@@ -71,7 +71,7 @@ void RenderScene(void)
 	//glVertex2f(0.5, 0.0);
 	//glEnd();
 
-	EJApp::instance()->run();
+	EJApp::instance()->update();
 
 
 	// Flush drawing commands
@@ -98,7 +98,11 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
-	
+
+	AllocConsole();
+	freopen("CONIN$", "r", stdin);
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
 
  	// TODO: 在此放置代码。
 	MSG msg;
@@ -175,6 +179,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 			RenderScene();
 		}
 	}
+
+	FreeConsole();
 
 	return (int) msg.wParam;
 }

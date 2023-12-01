@@ -1,0 +1,56 @@
+Debug版DLL LoadLibrary R6034异常的原因及解决
+Microsoft's recommendation is very confusing. That is, it recommends to include a manifest file and to re-compile the project.
+  I recently had a problem with 'R6034' error message even with a manifest file already included!
+  In my case, Visual Studio 2005 compiles and builds a DEBUG-configuration of some DLL. But, as soon as I try to start an application that uses that DLL the loader can't load the DLL and displays an error message with error code 'R6034'.
+  It happened because two Run-Time DLLs were referenced in my DLL by some reason! As soon as I looked inside of my DLL I found two strings: 'msvcr80d.dll' and 'msvcr80.dll', and the 2nd one is the reason of that run-time problem.
+  In order to resolve the problem I added 'msvcrt.lib' to the list of ignored libraries for DEBUG-configuration:
+    [Configuration Properties] -> [Linker] -> [Input] -> 'Ignore Specific Library' -msvcrt.lib
+
+
+
+R6034错误，C Runtime Error
+
+zf135792468
+
+于 2012-06-14 16:01:30 发布
+
+阅读量3.5k
+ 收藏 1
+
+点赞数
+文章标签： c linker application mfc initialization microsoft
+使用 stdafx.h加入这句
+
+code #pragma comment(linker, "\"/manifestdependency:type='Win32' name='Microsoft.VC80.CRT' version='8.0.50608.0' processorArchitecture='X86' publicKeyToken='1fc8b3b9a1e18e3b' language='*'\"") 解决的
+
+vs2008的话改成VC90.CRT
+
+version='8.0.50608.0' 改成你的vs的版本.
+
+
+以下是转载的全文   
+
+一个项目从vc6迁移到VS2005，在修改了一系列的类型警告后。编译成功了，Debug的时候，结果却冒出一个R6034错误："An application has made an attempt to load the C runtime library incorrectly. Please contact the application's support team for more information."
+      Output Window:app.exe 中的 0x7c984ed1 处最可能的异常: 0xC0000142: DLL Initialization Failed。
+      编译条件是：Linker->Manifest File ->Allow Isolation:Yes。
+
+    在同样的编译条件下，Release则可以正常编译运行。
+采取解决措施：在stdafx.h文件中加入：
+#pragma comment(linker, "\"/manifestdependency:type='Win32' name='Microsoft.VC80.CRT' version='8.0.50608.0' processorArchitecture='X86' publicKeyToken='1fc8b3b9a1e18e3b' language='*'\"")
+   之后，调试中出现若干错误,屏蔽掉错误代码，可以运行，只是最前面的一个splash窗体没有了。
+   (参考： http://forums.microsoft.com/china/ShowPost.aspx?PostID=1988459&SiteID=15)
+在此之前，参考了很多关于R6034错误的网页，主要是考虑manifest：
+    （1）磁盘系统是fat32格式的：FAT32的时间精度不够,所以linker在生成文件的时候会出错，如果是ntfs的就没有问题.VS2005项目设置里面在清单工具（Manifest Tool）下面有一个选项"使用FAT32解决办法"(Use FAT32 work around)是专门解决这个问题的.对于FAT32的磁盘，需要选择"Yes"，默认是"No".
+    (2)Visual Studio 2005用向导生成的项目，在运行时可能会遇到找不到MFC80UD.dll的问题。这个问题可能是Manifest 引起的，因此我们可以通过修改项目属性(properties)->清单工具(property pages)->链接(linker)-->manifest file -->Allow Isolation，把“嵌入清单”选“否”，.然后编译、链接、运行即可。
+Visual Studio 2005用向导生成的项目，在运行时可能会遇到找不到MFC80UD.dll的问题。这个问题可能是Manifest 引起的，因此我们可以通过修改项目属性->清单工具->输入输出，把“嵌入清单（Embed Manifest）”选“否”，.然后编译、链接、运行即可。
+    (3)有人提示，在项目属性里，mfc的使用应该设置为静态链接。但我改成静态后，会有很多错误，于是放弃。
+    （4）问了一个论坛上的网友，他说可能和Microsoft C++ Runtime Library有关系。
+
+     除此之外，一个参考文献上说的解决方法是：将Linker->Manifest File ->Allow Isolation：Do not Allow Side by Side isolation，则无论在Debug和Release条件，都出现如下：This application has failed to start because MSVCR80D.dll was not found. Re-installing the application may fix the problem."
+    关于这个问题，有篇博客文章上说：
+VS2005在FAT32分区的介质上对于Win32程序编译的一些注意
+问题描述：大部分的vs.net 2005的用户在新建“win32项目－windows应用程序”的时候，新建的工程都通不过去，出现如下提示：
+Solution to “MSVCR80D.dll not found”
+“没有找到MSVCR80D.dll，因此这个应用程序未能启动。重新安装应用程序可能会修复此问题。”
+
+问题所在：由于vs.net 2005 采用了一种新的DLL方案，搞成一个exe还要配有一个manifest文件（一般在嵌入文件里了，所以看不到，不过也可以不嵌入，这样会生产一个<程序名>.exe.manifest的文件，没它exe自己就转不了了：）这是个新功能，微软弄了个新工具（mt.exe），结果不好用，好像是fat32下时间戳有问题（在ntfs下这个问题就没有了），搞得manifest有时嵌入不到exe中（默认配置是嵌入的，所以就报错找不到dll了。

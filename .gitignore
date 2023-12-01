@@ -34,3 +34,6 @@ gen/
 /project/windows/.vs
 /project/windows/Debug
 /project/windows/UpgradeLog.htm
+/project/windows/Ejecta-X/Release
+/project/android/libs/armeabi-v7a/*.so
+/project/android/assets/www/shaders

@@ -79,7 +79,7 @@ public:
 #endif
     
     void setScreenSize(int w, int h);
-    void run(void);
+    void update(void);
     void pause(void);
     void resume(void);
     void clearCaches(void);
