@@ -34,7 +34,11 @@
 using namespace std;
 
 #define EJECTA_VERSION "0.8.0"
+#ifdef WIN32
+#define EJECTA_APP_FOLDER "files/build/"
+#else
 #define EJECTA_APP_FOLDER "www/"
+#endif
 
 class EJBindingBase;
 class EJTimerCollection;

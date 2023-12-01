@@ -20,23 +20,24 @@ jobject assetManager;
 
 
 #ifdef _WINDOWS
-FILE _iob[] = { *stdin, *stdout, *stderr };
+FILE _iob[] = {*stdin, *stdout, *stderr};
 
-extern "C" FILE * __cdecl __iob_func(void)
+extern "C" FILE* __cdecl __iob_func(void)
 {
     return _iob;
 }
 #endif
 
-#ifdef _WINDOWS	
+#ifdef _WINDOWS
 #include <windows.h>
 #endif
 #include "EJCocoa/support/NSPlatformMacros.h"
-
+#include <algorithm>
+//getFileData
 unsigned char* ReadFileN(const char* filename, size_t* sizea)
 {
     NSLOG("ReadFileN %s", filename);
-    
+
 #if defined(ANDROID)
     // Check file from main bundle - /assets/EJECTA_APP_FOLDER/
     if (g_assetManager == NULL) {
@@ -62,16 +63,19 @@ unsigned char* ReadFileN(const char* filename, size_t* sizea)
         return buffer;
     }
 #else
-    
-    std::ifstream iFile(filename, std::ios::in);
+
+    std::string strPath = filename;
+    std::replace(strPath.begin(), strPath.end(), '/', '\\');
+
+    std::ifstream iFile(strPath.c_str(), std::ios::in);
     std::string rslt(
         (std::istreambuf_iterator<char>(iFile)),
         (std::istreambuf_iterator<char>())
     );
     std::basic_string<char> remove_reference = std::move(rslt);
     size_t size = remove_reference.size();
-    
-    unsigned char* buffer = (unsigned char*)malloc(sizeof(char) * size);    
+
+    unsigned char* buffer = (unsigned char*)malloc(sizeof(char) * size);
     memcpy(buffer, remove_reference.c_str(), size);
     *sizea = size;
 

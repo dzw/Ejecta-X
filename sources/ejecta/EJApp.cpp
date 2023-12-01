@@ -190,12 +190,16 @@ void EJApp::doInit(const char* path, int w, int h)
 	snprintf(dataBundle, len, "%s", path);
 #endif
 
+	NSLOG("EJApp::doInit %s", dataBundle);
+
 	height = h;
 	width = w;
 
 	// Load the initial JavaScript source files
 	// loadScriptAtPath(NSStringMake(EJECTA_BOOT_JS));
 	// loadScriptAtPath(NSStringMake(EJECTA_MAIN_JS));
+	loadJavaScriptFile("ejecta.js");
+	loadJavaScriptFile("index.js");
 }
 
 void EJApp::setScreenSize(int w, int h)
@@ -223,7 +227,7 @@ void EJApp::update(void)
 		if (touchDelegate&&touches&&touches->count()>0)
 		{
 			EJTouchEvent* event = (EJTouchEvent*)touches->objectAtIndex(0);
-			NSLOG("event count %d %s(%d, %d)", touches->count(), event->eventName->getCString(), event->posX, event->posY);
+//			NSLOG("event count %d %s(%d, %d)", touches->count(), event->eventName->getCString(), event->posX, event->posY);
 			touchDelegate->triggerEvent(event->eventName, event->posX, event->posY);
 			touches->removeObjectAtIndex(0);
 		}

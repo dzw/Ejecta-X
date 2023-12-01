@@ -256,7 +256,7 @@ NSString* NSString::stringWithContentsOfFile(const char* pszFileName)
 {
     return NSString::createWithContentsOfFile(pszFileName);
 }
-
+#include <algorithm>
 unsigned char* getFileData(const char* fileName, const char* pszMode, unsigned long * pSize)
 {
     unsigned char* buffer;
@@ -264,11 +264,15 @@ unsigned char* getFileData(const char* fileName, const char* pszMode, unsigned l
     size_t buffer_size = 0;
     size_t buffer_capacity = 1024;
     buffer = (unsigned char*)malloc(buffer_capacity);
+
+    std::string strPath = fileName;
+    std::replace(strPath.begin(), strPath.end(), '/', '\\');
+    fileName = strPath.c_str();
     
     FILE* f = fopen(fileName, pszMode);
     if (!f) {
-        //NSLOG("Could not open file: %s\n", fileName);
-        return 0;
+        NSLOG("Could not open file: %s\n", fileName);
+        return nullptr;
     }
     
     while (!feof(f) && !ferror(f)) {
