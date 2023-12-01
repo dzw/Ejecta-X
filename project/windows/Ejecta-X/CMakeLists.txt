@@ -120,7 +120,7 @@ set(ejecta__EJUtils
 )
 source_group("ejecta\\EJUtils" FILES ${ejecta__EJUtils})
 
-set(ejecta__H
+set(header
     "../../../sources/lib/lodefreetype/lodefreetype.h"
     "../../../sources/lib/lodejpeg/lodejpeg.h"
     "../../../sources/lib/lodepng/lodepng.h"
@@ -128,9 +128,15 @@ set(ejecta__H
     "stdafx.h"
     "targetver.h"
 )
-source_group("头文件" FILES ${ejecta__H})
+source_group("header" FILES ${header})
 
-set(ejecta__X
+set(res
+    "Ejecta-X.ico"
+    "small.ico"
+)
+source_group("res" FILES ${res})
+
+set(src
     "../../../sources/ejecta/EJCanvas/2D/EJGLProgram2D.cpp"
     "../../../sources/ejecta/EJSharedOpenGLContext.cpp"
     "../../../sources/lib/lodefreetype/lodefreetype.cpp"
@@ -138,13 +144,7 @@ set(ejecta__X
     "../../../sources/lib/lodepng/lodepng.cpp"
     "stdafx.cpp"
 )
-source_group("源文件" FILES ${ejecta__X})
-
-set(
-    "Ejecta-X.ico"
-    "small.ico"
-)
-source_group("资源文件" FILES ${})
+source_group("src" FILES ${src})
 
 set(ALL_FILES
     ${no_group_source_files}
@@ -155,9 +155,9 @@ set(ALL_FILES
     ${ejecta__EJCocoa}
     ${ejecta__EJCocoa__support}
     ${ejecta__EJUtils}
-    ${ejecta__H}
-    ${ejecta__X}
-    ${}
+    ${header}
+    ${res}
+    ${src}
 )
 
 ################################################################################
@@ -558,6 +558,24 @@ set(ADDITIONAL_LIBRARY_DEPENDENCIES
 target_link_libraries(${PROJECT_NAME} PRIVATE "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
 
 target_link_directories(${PROJECT_NAME} PRIVATE
+    "$<$<CONFIG:DebugMultithreaded>:"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/lodepng;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/lodefreetype;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/uriparser;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../library/win32/libjpeg"
+    ">"
+    "$<$<CONFIG:DebugSinglethreaded>:"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/lodepng;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/lodefreetype;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/uriparser;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../library/win32/libjpeg"
+    ">"
+    "$<$<CONFIG:Debug>:"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/lodepng;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/lodefreetype;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../sources/lib/uriparser;"
+        "${CMAKE_CURRENT_SOURCE_DIR}//../../../library/win32/libjpeg"
+    ">"
     "${CMAKE_CURRENT_SOURCE_DIR}//../../../library/win32/libraries"
 )
 

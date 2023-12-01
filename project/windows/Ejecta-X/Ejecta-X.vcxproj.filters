@@ -87,9 +87,6 @@
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasContext.h">
       <Filter>ejecta\EJCanvas</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasTypes.h">
-      <Filter>ejecta\EJCanvas</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\sources\ejecta\EJConvert.h">
       <Filter>ejecta</Filter>
     </ClInclude>

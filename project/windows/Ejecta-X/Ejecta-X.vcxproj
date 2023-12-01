@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <ReferencePath>$(ReferencePath)</ReferencePath>
-    <IncludePath>sources\lib\uriparser;sources\lib\lodejpeg;sources\lib\lodepng;EJCanvas;ejecta\EJCanvas\2D;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>D:\Mine\Ejecta-X\sources\lib\uriparser;D:\Mine\Ejecta-X\sources\lib\lodejpeg;D:\Mine\Ejecta-X\sources\lib\lodepng;EJCanvas;ejecta\EJCanvas\2D;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <ExternalIncludePath>D:\Mine\Ejecta-X\sources\lib\lodefreetype;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,7 +119,6 @@
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJBindingCanvas.h" />
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJBindingImage.h" />
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasContext.h" />
-    <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJCanvasTypes.h" />
     <ClInclude Include="..\..\..\sources\ejecta\EJCanvas\EJTexture.h" />
     <ClInclude Include="..\..\..\sources\ejecta\EJCocoa\CGAffineTransform.h" />
     <ClInclude Include="..\..\..\sources\ejecta\EJCocoa\NSArray.h" />

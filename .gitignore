@@ -42,3 +42,5 @@ gen/
 /project/windows/cmake-build-debug
 /project/windows/Ejecta-X/Ejecta-X.dir
 /project/windows/CMakeFiles
+/project/cwindows/.vs/Ejecta-X/v16
+/project/cwindows

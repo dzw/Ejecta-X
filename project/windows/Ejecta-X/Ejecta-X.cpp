@@ -299,8 +299,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	   g_hRC = wglCreateContext(g_hDC);
 	   if (g_hRC == NULL)
-	   {
-		   printf("!!! Could not create an OpenGL 3.1 context.\n");
+	   { 
+		   DWORD errorCode = GetLastError();//2000 ERROR_INVALID_PIXEL_FORMAT
+		   printf("!!! Could not create an OpenGL 3.1 context. err:%d \n", errorCode);
 	   }
 
 	   wglMakeCurrent( g_hDC, g_hRC );
