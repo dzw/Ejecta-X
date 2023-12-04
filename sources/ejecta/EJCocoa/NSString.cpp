@@ -268,7 +268,20 @@ unsigned char* getFileData(const char* fileName, const char* pszMode, unsigned l
     std::string strPath = fileName;
     std::replace(strPath.begin(), strPath.end(), '/', '\\');
     fileName = strPath.c_str();
+
+#ifdef _WINDOWS
+    DWORD size = GetCurrentDirectory(0,NULL);
+    LPTSTR NPath = (LPTSTR)malloc(sizeof(TCHAR) * size);
+    DWORD a = GetCurrentDirectory(size, NPath);
+    wstring ws(NPath);
+    string str(ws.begin(), ws.end());
+    auto basic_string = (str + "\\" + fileName);
     
+    fileName = basic_string.c_str();
+
+    NSLog("getFileData %s", fileName);
+    
+#endif
     FILE* f = fopen(fileName, pszMode);
     if (!f) {
         NSLOG("Could not open file: %s\n", fileName);

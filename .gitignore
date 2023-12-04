@@ -44,3 +44,5 @@ gen/
 /project/windows/CMakeFiles
 /project/cwindows/.vs/Ejecta-X/v16
 /project/cwindows
+/project/windows/Ejecta-X/files/build
+/project/windows/Ejecta-X/*.aps
