@@ -1,3 +1,7 @@
+#ifdef _WINDOWS
+#include <windows.h>
+#endif
+
 #include "NSString.h"
 //#include "NSFileUtils.h"
 #include "support/nsMacros.h"
@@ -273,8 +277,8 @@ unsigned char* getFileData(const char* fileName, const char* pszMode, unsigned l
     DWORD size = GetCurrentDirectory(0,NULL);
     LPTSTR NPath = (LPTSTR)malloc(sizeof(TCHAR) * size);
     DWORD a = GetCurrentDirectory(size, NPath);
-    wstring ws(NPath);
-    string str(ws.begin(), ws.end());
+    std::wstring ws(NPath);
+    std::string str(ws.begin(), ws.end());
     auto basic_string = (str + "\\" + fileName);
     
     fileName = basic_string.c_str();

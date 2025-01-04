@@ -24,6 +24,7 @@
 #include "EJCocoa/NSCache.h"
 #include "EJCocoa/UIFont.h"
 #include "EJSharedOpenGLContext.h"
+#include "EJCanvas/2D/EJGLProgram2D.h"
 
 
 #define EJ_CANVAS_STATE_STACK_SIZE 16

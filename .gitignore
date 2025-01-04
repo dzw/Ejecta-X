@@ -46,3 +46,6 @@ gen/
 /project/cwindows
 /project/windows/Ejecta-X/files/build
 /project/windows/Ejecta-X/*.aps
+/project/windows/*.sdf
+/project/windows/*.suo
+/project/windows/ipch/ejecta-x-3a24df9b/*.ipch

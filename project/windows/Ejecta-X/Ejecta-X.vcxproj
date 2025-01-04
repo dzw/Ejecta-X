@@ -42,8 +42,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <ReferencePath>$(ReferencePath)</ReferencePath>
-    <IncludePath>D:\Mine\Ejecta-X\sources\lib\uriparser;D:\Mine\Ejecta-X\sources\lib\lodejpeg;D:\Mine\Ejecta-X\sources\lib\lodepng;EJCanvas;ejecta\EJCanvas\2D;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <ExternalIncludePath>D:\Mine\Ejecta-X\sources\lib\lodefreetype;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
+    <IncludePath>$(ProjectDir)..\..\..\sources\lib\uriparser;$(ProjectDir)..\..\..\sources\lib\lodejpeg;$(ProjectDir)..\..\..\sources\lib\lodepng;EJCanvas;ejecta\EJCanvas\2D;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ExternalIncludePath>$(ProjectDir)..\..\..\sources\lib\lodefreetype;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

@@ -30,6 +30,9 @@
 
 #include "EJSharedOpenGLContext.h"
 
+#ifdef ANDROID
+#include <android/asset_manager.h>
+#endif
 
 using namespace std;
 
@@ -60,12 +63,19 @@ private:
     static EJApp *ejectaInstance;
 
     bool doesFileExist(const char *filename);
+#ifdef ANDROID
+public:
+    jobject assetManager;
+	AAssetManager *aassetManager;
+private:
+	JavaVM *jvm;
+	jobject g_obj;
+#endif
 
 public:
     BOOL landscapeMode;
     JSGlobalContextRef jsGlobalContext;
     int height, width;
-    
     char *dataBundle;
     EJBindingTouchInput *touchDelegate;
     EJCanvasContext *currentRenderingContext;
@@ -78,9 +88,13 @@ public:
     ~EJApp(void);
     void doInit(const char* path, int w, int h);
 
-#if defined(ANDROID)
-    void init(JNIEnv *env, jobject jobj, jobject assetManager, const char *path, int w, int h);
+    void init(
+#ifdef ANDROID
+		JNIEnv *env,
+		jobject jobj,
+		jobject assetManager,
 #endif
+		const char *path, int w, int h);
     
     void setScreenSize(int w, int h);
     void update(void);

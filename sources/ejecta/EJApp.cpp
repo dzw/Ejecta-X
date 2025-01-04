@@ -157,19 +157,25 @@ EJApp::~EJApp()
 	NSPoolManager::purgePoolManager();
 }
 
-#if defined(ANDROID)
-void EJApp::init(JNIEnv* env, jobject jobj, jobject assetManager, const char* path, int w, int h)
+void EJApp::init(
+#ifdef ANDROID
+	JNIEnv *env,
+	jobject jobj, 
+	jobject assetManager,
+#endif
+	const char* path, int w, int h)
 {
+#ifdef ANDROID
 	JavaVM *jvm;
 	jobject g_obj;
 	env->GetJavaVM(&jvm);
 	g_obj = jobj;
 	// Set global pointer to Asset Manager in Java
 	g_assetManager = AAssetManager_fromJava(env, assetManager);
+#endif
 
 	doInit(path, w, h);
 }
-#endif
 
 void EJApp::doInit(const char* path, int w, int h)
 {
